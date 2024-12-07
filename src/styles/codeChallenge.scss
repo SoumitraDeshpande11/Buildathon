@@ -1,0 +1,354 @@
+@use 'variables' as *;
+
+.demo-challenge {
+  background: $card-background;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  padding: $spacing-xl 5%;
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: $spacing-xl;
+    color: $text-color;
+  }
+}
+
+.challenge-container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  background: $background-color;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  border: 1px solid $border-color;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.challenge-wrapper {
+  display: block;
+  transition: $transition-normal;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.question-area {
+  padding: $spacing-lg;
+  background: $card-background;
+  border-bottom: 1px solid $border-color;
+
+  h3 {
+    color: $primary-color;
+    margin-bottom: $spacing-md;
+    font-size: 1.5rem;
+  }
+
+  .problem-description {
+    color: $text-color;
+    line-height: 1.6;
+
+    .example {
+      margin-top: $spacing-md;
+      padding: $spacing-md;
+      background: $bg-opacity-light;
+      border-radius: $border-radius-md;
+      border: 1px solid $border-color;
+    }
+  }
+}
+
+.code-area {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $background-color;
+
+  .code-editor {
+    background: $background-color;
+
+    .editor-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: $spacing-md;
+      background: $card-background;
+      border-bottom: 1px solid $border-color;
+
+      .language-label {
+        color: $primary-color;
+        font-weight: 600;
+      }
+
+      .run-button {
+        padding: $spacing-sm $spacing-lg;
+        background: $primary-color;
+        color: $background-color;
+        border: none;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+        font-weight: 600;
+        transition: $transition-normal;
+
+        &:hover {
+          background: $primary-dark;
+          transform: translateY(-2px);
+          box-shadow: $shadow-sm;
+        }
+      }
+    }
+
+    .editor-content {
+      padding: $spacing-md;
+      background: $background-color;
+      border-radius: 0 0 $border-radius-md $border-radius-md;
+
+      pre {
+        margin: 0;
+        padding: $spacing-md;
+        background: $card-background;
+        border-radius: $border-radius-md;
+        border: 1px solid $border-color;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: $text-color;
+        overflow-x: auto;
+      }
+    }
+  }
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  width: 300px;
+}
+
+.tree-visualization {
+  background: $card-background;
+  border-radius: $border-radius-md;
+  border: 1px solid $border-color;
+  overflow: hidden;
+
+  h4 {
+    padding: $spacing-sm $spacing-md;
+    background: $bg-opacity-light;
+    border-bottom: 1px solid $border-color;
+    color: $primary-color;
+    font-weight: 600;
+  }
+
+  .tree-container {
+    padding: $spacing-md;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .growing-tree-visual {
+    width: 100px;
+    height: 100px;
+    background: url('tree-stages.png') no-repeat;
+    background-size: 500px 100px;
+    background-position: 0 0;
+    transition: background-position 1s ease;
+
+    &.growing {
+      animation: treeGrow 2s steps(5) forwards;
+    }
+  }
+
+  .tree-level {
+    margin-top: $spacing-md;
+    color: $primary-color;
+    font-weight: 600;
+  }
+}
+
+.ai-helper {
+  background: $card-background;
+  border-radius: $border-radius-md;
+  border: 1px solid $border-color;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .ai-helper-header {
+    padding: $spacing-sm $spacing-md;
+    background: $bg-opacity-light;
+    border-bottom: 1px solid $border-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h4 {
+      color: $primary-color;
+      font-weight: 600;
+    }
+
+    .help-button {
+      padding: $spacing-xs $spacing-md;
+      background: $primary-color;
+      color: $background-color;
+      border: none;
+      border-radius: $border-radius-sm;
+      cursor: pointer;
+      font-weight: 600;
+      transition: $transition-normal;
+
+      &:hover {
+        background: $primary-dark;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .ai-chat-container {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+
+    .ai-messages {
+      flex-grow: 1;
+      padding: $spacing-md;
+      overflow-y: auto;
+
+      .ai-message {
+        margin-bottom: $spacing-md;
+        padding: $spacing-sm;
+        border-radius: $border-radius-md;
+        background: $bg-opacity-light;
+        border: 1px solid $border-color;
+
+        &.user {
+          background: $bg-opacity-medium;
+          margin-left: $spacing-md;
+        }
+
+        &.typing {
+          color: $light-text;
+          font-style: italic;
+        }
+      }
+    }
+
+    .ai-input {
+      display: flex;
+      padding: $spacing-md;
+      gap: $spacing-sm;
+      border-top: 1px solid $border-color;
+
+      input {
+        flex-grow: 1;
+        padding: $spacing-sm;
+        border: 1px solid $border-color;
+        border-radius: $border-radius-sm;
+        background: $background-color;
+        color: $text-color;
+        font-family: inherit;
+
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+        }
+      }
+
+      .send-button {
+        padding: $spacing-sm;
+        background: $primary-color;
+        color: $background-color;
+        border: none;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+        transition: $transition-normal;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background: $primary-dark;
+          transform: translateY(-2px);
+        }
+
+        .material-icons {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+
+.challenge-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md;
+  background: $card-background;
+  border-top: 1px solid $border-color;
+
+  .nav-button {
+    padding: $spacing-sm $spacing-lg;
+    background: $card-background;
+    color: $primary-color;
+    border: 2px solid $primary-color;
+    border-radius: $border-radius-sm;
+    cursor: pointer;
+    font-weight: 600;
+    transition: $transition-normal;
+
+    &:hover:not(:disabled) {
+      background: $primary-color;
+      color: $card-background;
+      transform: translateY(-2px);
+      box-shadow: $shadow-sm;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .challenge-counter {
+    color: $light-text;
+    font-weight: 600;
+  }
+}
+
+@keyframes treeGrow {
+  0% { background-position: 0 0; }
+  25% { background-position: -100px 0; }
+  50% { background-position: -200px 0; }
+  75% { background-position: -300px 0; }
+  100% { background-position: -400px 0; }
+}
+
+@media (max-width: $breakpoint-lg) {
+  .code-area {
+    grid-template-columns: 1fr;
+  }
+
+  .side-panel {
+    width: 100%;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .challenge-container {
+    margin: 0 -5%;
+    border-radius: 0;
+  }
+  
+  .editor-content {
+    padding: $spacing-sm;
+
+    pre {
+      font-size: 0.8rem;
+    }
+  }
+} 

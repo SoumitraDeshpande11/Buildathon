@@ -1,0 +1,149 @@
+@use './_variables' as *;
+
+.code-editor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+  padding: $spacing-lg;
+  height: calc(100vh - 60px);
+  margin-top: 60px;
+
+  .question-panel {
+    background: $card-background;
+    padding: $spacing-lg;
+    border-radius: $border-radius-lg;
+    overflow-y: auto;
+
+    h2 {
+      color: $text-color;
+      margin-bottom: $spacing-md;
+    }
+
+    .difficulty {
+      display: inline-block;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $border-radius-sm;
+      background: $primary-color;
+      color: $text-color;
+      margin-bottom: $spacing-md;
+    }
+
+    .description {
+      color: $light-text;
+      margin-bottom: $spacing-lg;
+      line-height: 1.6;
+    }
+
+    .example {
+      background: $background-color;
+      padding: $spacing-md;
+      border-radius: $border-radius-sm;
+      margin-bottom: $spacing-md;
+
+      div {
+        margin-bottom: $spacing-sm;
+      }
+    }
+
+    .new-question {
+      background: $primary-color;
+      color: $text-color;
+      border: none;
+      padding: $spacing-sm $spacing-md;
+      border-radius: $border-radius-sm;
+      cursor: pointer;
+      margin-top: $spacing-lg;
+
+      &:hover {
+        background: $primary-dark;
+      }
+    }
+  }
+
+  .editor-panel {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .code-textarea {
+      flex-grow: 1;
+      background: $card-background;
+      border: 1px solid $border-color;
+      border-radius: $border-radius-lg;
+      padding: $spacing-md;
+      font-family: 'Fira Code', monospace;
+      color: $text-color;
+      resize: none;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+      }
+    }
+
+    .run-code {
+      background: $primary-color;
+      color: $text-color;
+      border: none;
+      padding: $spacing-md;
+      border-radius: $border-radius-sm;
+      cursor: pointer;
+
+      &:hover {
+        background: $primary-dark;
+      }
+    }
+  }
+}
+
+.loading, .error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 60px);
+  margin-top: 60px;
+  gap: $spacing-md;
+  color: $text-color;
+}
+
+.evaluation {
+  margin-top: $spacing-lg;
+  padding: $spacing-md;
+  border-radius: $border-radius-sm;
+  background: $background-color;
+
+  &.correct {
+    border-left: 4px solid $success-color;
+  }
+
+  &.incorrect {
+    border-left: 4px solid $accent-color;
+  }
+
+  h3 {
+    margin-bottom: $spacing-md;
+  }
+
+  .result, .output, .feedback, .suggestions, .complexity {
+    margin-bottom: $spacing-md;
+  }
+
+  ul {
+    margin-top: $spacing-xs;
+    padding-left: $spacing-md;
+  }
+
+  strong {
+    color: $text-color;
+  }
+}
+
+.editor-panel {
+  .run-code {
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+} 

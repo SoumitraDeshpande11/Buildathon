@@ -1,0 +1,187 @@
+@use 'variables' as *;
+
+.ai-feature {
+  background: $card-background;
+  position: relative;
+  overflow: hidden;
+  padding: $spacing-xl 5%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba($primary-color, 0.1), transparent 70%);
+    pointer-events: none;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: $spacing-xl;
+    color: $text-color;
+    position: relative;
+  }
+
+  .ai-feature-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+    align-items: center;
+    max-width: $container-max-width;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .ai-feature-visual {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .code-animation {
+      background: $background-color;
+      padding: $spacing-lg;
+      border-radius: $border-radius-lg;
+      border: 1px solid $border-color;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      animation: float-code 6s ease-in-out infinite;
+
+      pre {
+        margin: 0;
+        padding: 0;
+      }
+
+      .typing-code {
+        font-family: 'Fira Code', monospace;
+        color: $primary-color;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin: 0;
+        white-space: pre;
+      }
+
+      .cursor {
+        position: absolute;
+        width: 2px;
+        height: 1.2rem;
+        background: $primary-color;
+
+        &.blink {
+          animation: blink 1s infinite;
+        }
+      }
+    }
+
+    .ai-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+
+      .ai-particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: $primary-color;
+        border-radius: 50%;
+        opacity: 0.3;
+      }
+    }
+  }
+
+  .ai-feature-content {
+    h3 {
+      font-size: 2rem;
+      color: $text-color;
+      margin-bottom: $spacing-lg;
+    }
+
+    .ai-benefits {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-lg;
+
+      li {
+        display: flex;
+        gap: $spacing-md;
+        align-items: flex-start;
+        padding: $spacing-md;
+        background: $bg-opacity-light;
+        border-radius: $border-radius-md;
+        border: 1px solid $border-color;
+        transition: $transition-normal;
+
+        &:hover {
+          transform: translateX(10px);
+          background: $bg-opacity-medium;
+        }
+
+        .material-icons {
+          color: $primary-color;
+          font-size: 2rem;
+        }
+
+        h4 {
+          color: $primary-color;
+          margin-bottom: $spacing-sm;
+          font-size: 1.2rem;
+        }
+
+        p {
+          color: $light-text;
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+}
+
+@keyframes float-code {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes particle-float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (max-width: $breakpoint-md) {
+  .ai-feature {
+    .ai-feature-container {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+
+    .ai-feature-visual {
+      height: 300px;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .ai-feature-content {
+      h3 {
+        font-size: 1.8rem;
+      }
+    }
+  }
+} 

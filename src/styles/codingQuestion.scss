@@ -1,0 +1,133 @@
+@use 'variables' as *;
+
+.coding-question {
+  background: $card-background;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+
+    h2 {
+      color: $text-color;
+      margin: 0;
+    }
+
+    .question-controls {
+      display: flex;
+      gap: $spacing-md;
+
+      .difficulty-selector {
+        padding: $spacing-sm $spacing-md;
+        background: $background-color;
+        color: $text-color;
+        border: 1px solid $border-color;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+        }
+      }
+
+      .new-question-btn {
+        padding: $spacing-sm $spacing-md;
+        background: $primary-color;
+        color: $text-color;
+        border: none;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+        transition: $transition-normal;
+
+        &:hover {
+          background: $primary-dark;
+          transform: translateY(-1px);
+        }
+      }
+    }
+  }
+
+  .question-content {
+    .description {
+      margin-bottom: $spacing-lg;
+
+      h3 {
+        color: $text-color;
+        margin-bottom: $spacing-md;
+      }
+
+      p {
+        color: $light-text;
+        line-height: 1.6;
+      }
+    }
+
+    .examples {
+      margin-bottom: $spacing-lg;
+
+      h3 {
+        color: $text-color;
+        margin-bottom: $spacing-md;
+      }
+
+      .example {
+        background: $card-background;
+        padding: $spacing-md;
+        border-radius: $border-radius-sm;
+        margin-bottom: $spacing-md;
+        border: 1px solid $border-color;
+
+        > div {
+          margin-bottom: $spacing-sm;
+          color: $light-text;
+
+          strong {
+            color: $text-color;
+          }
+        }
+      }
+    }
+
+    .hints {
+      h3 {
+        color: $text-color;
+        margin-bottom: $spacing-md;
+      }
+
+      .toggle-hints {
+        background: transparent;
+        color: $primary-color;
+        border: 1px solid $primary-color;
+        padding: $spacing-sm $spacing-md;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+        transition: $transition-normal;
+
+        &:hover {
+          background: rgba($primary-color, 0.1);
+        }
+      }
+
+      ul {
+        margin-top: $spacing-md;
+        padding-left: $spacing-lg;
+        color: $light-text;
+
+        li {
+          margin-bottom: $spacing-sm;
+        }
+      }
+    }
+  }
+}
+
+.question-loading {
+  padding: $spacing-xl;
+  text-align: center;
+  color: $light-text;
+} 
